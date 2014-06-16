@@ -23,7 +23,7 @@
 			<tr>
 				<td>Data Inicio</td>
 				<td>
-					<input placeholder="__/__/____" type="text" name="contrato.dataIni" value="<f:formatDate pattern="dd/MM/yyyy" value="${contrato.dataIni}" />" class="form-control" ng-required="true"/>
+					<input placeholder="__/__/____" type="text" name="contrato.dataInicio" value="<f:formatDate pattern="dd/MM/yyyy" value="${contrato.dataInicio}" />" class="form-control" ng-required="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -35,7 +35,7 @@
 			<tr>
 				<td>Fornecedor</td>
 				<td>
-					<select name="selecionado.id" ng-model="fornecedor.id" ng-options="fornecedor.id as fornecedor.nome for fornecedor in fornecedores" class="form-control" >
+					<select name="selecionado.id" ng-model="fornecedor.id" ng-options="fornecedor.nome for fornecedor in fornecedores track by fornecedor.id" class="form-control" >
 						<option value="">Selecione um fornecedor</option>
 					</select>
 				</td>

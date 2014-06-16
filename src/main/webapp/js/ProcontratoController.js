@@ -1,7 +1,7 @@
 // lógica do controller
-var funcao = function($scope, $http) {
+var funcao = function($scope, $http, $resource) {
 
-	// Cria array de contratos
+	// Recupera um Array de contratos via requisição ajax ao servidor de aplicação.
     loadContList = function() {
     	$http.get('/procontratos/contrato/lista/json').success(function(retorno) {
     		$scope.contratos = retorno;
@@ -11,8 +11,7 @@ var funcao = function($scope, $http) {
 	    });
     };
     
-    // Cria array de fornecedores
-    
+    // Recupera um Array de fornecedores via requisição ajax ao servidor de aplicação.
     $http.get('/procontratos/contrato/pegaFornecedores/json').success(function(retorno) {
     	$scope.fornecedores = retorno;
     }).error(function(msg) {
@@ -28,7 +27,7 @@ var funcao = function($scope, $http) {
 	    	console.log(msg);
 	    });
     };
-    
+   
     loadContList();
     
     $scope.remove = function(contrato) {

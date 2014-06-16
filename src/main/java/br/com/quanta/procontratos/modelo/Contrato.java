@@ -4,10 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -34,17 +32,17 @@ public class Contrato implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	@NotNull
-	private Date dataIni;
+	private Date dataInicio;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	@NotNull
 	private Date dataFim;
-	
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+
+	@OneToOne
 	private Fornecedor fornecedor;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany
 	@JoinColumn(name = "contrato_id")
 	private List<ItemContratado> itens;
 
@@ -56,12 +54,12 @@ public class Contrato implements Serializable {
 		this.numero = numero;
 	}
 
-	public Date getDataIni() {
-		return dataIni;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setDataIni(Date dataIni) {
-		this.dataIni = dataIni;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
 	public Date getDataFim() {
@@ -86,6 +84,38 @@ public class Contrato implements Serializable {
 
 	public void setItens(List<ItemContratado> itens) {
 		this.itens = itens;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((fornecedor == null) ? 0 : fornecedor.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contrato other = (Contrato) obj;
+		if (fornecedor == null) {
+			if (other.fornecedor != null)
+				return false;
+		} else if (!fornecedor.equals(other.fornecedor))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		return true;
 	}
 
 }

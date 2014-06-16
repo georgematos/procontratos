@@ -22,14 +22,19 @@
 	</tr>
 		<tr ng-repeat="contrato in contratos">
 			<td>{{ contrato.numero }}</td>
-			<td>{{ contrato.dataIni }}</td>
+			<td>{{ contrato.dataInicio }}</td>
 			<td>{{ contrato.dataFim }}</td>
 			<td>{{ contrato.fornecedor.nome }}</td>
-			<td><a href="/procontratos/contrato/formEditarContrato?numero={{contrato.numero}}"><button>Editar</button></a>
+			<td>
+				<form method="post" action="/procontratos/contrato/formEditarContrato">
+					<input name="contrato" type="hidden" value="{{contrato}}">
+					<input type="submit" value="Editar" />
+				</form>
+			</td>
 			<td><button type="button" ng-click="remove(contrato)">Excluir</button></td>
 		<tr>
 	</table>
-	<script type="text/javascript" src="<c:url value="/js/angular.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/js/angular.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/angular-resource.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/main.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/ProcontratoController.js" />"></script>

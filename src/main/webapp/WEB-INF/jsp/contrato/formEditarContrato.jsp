@@ -7,23 +7,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
-<title>Novo Contrato</title>
+<title>Editar Contrato</title>
 </head>
 <body ng-controller="ProcontratoController" ng-init="iniciarFornecedor(${contrato.fornecedor.id})">
 
 	<%@ include file="/template/nav.jsp" %>
-
-	<form action="<c:url value="/contrato/contratoAlterar/${contrato.fornecedor.id}" />" method="post">
+	
+	<form action="<c:url value="/contrato/contratoAlterar" />" method="post">
 		
 		<table class="table">
 			<tr>
 				<td>Numero</td>
-				<td><input type="text" name="contrato.numero" value="${contrato.numero}" class="form-control" ng-required="true"></td>
+				<td><input type="text" name="contrato.numero" value="${contrato.numero}" class="form-control" readonly="readonly" ng-required="true"></td>
 			</tr>
 			<tr>
 				<td>Data Inicio</td>
 				<td>
-					<input placeholder="__/__/____" name="contrato.dataIni" value="<f:formatDate pattern="dd/MM/yyyy" value="${contrato.dataIni}" />" class="form-control" ng-required="true" />
+					<input placeholder="__/__/____" name="contrato.dataInicio" value="<f:formatDate pattern="dd/MM/yyyy" value="${contrato.dataInicio}" />" class="form-control" ng-required="true" />
 				</td>
 			</tr>
 			<tr>
@@ -36,7 +36,13 @@
 			<tr>
 				<td>Fornecedor</td>
 				<td>
-					<select name="selecionado.id" ng-model="fornecedor.id" ng-options="fornecedor.id as fornecedor.nome for fornecedor in fornecedores" class="form-control" ng-required="true"></select>
+					<%-- 
+					name -> o valor será passado neste parametro
+					ng-model -> fornecedor é um objeto javascript no scope do AngularJS ele é inicializado na diretiva ng-init que recupera o fornecedor recebendo seu id como argumento.
+					ng-options -> lista os fornecedores 
+					Veja o arquivo ProcontratoController.js
+					--%> 
+					<select name="selecionado.id" ng-model="fornecedor" ng-options="fornecedor.nome for fornecedor in fornecedores track by fornecedor.id" class="form-control"></select>
 				</td>
 			</tr>
 			<tr>

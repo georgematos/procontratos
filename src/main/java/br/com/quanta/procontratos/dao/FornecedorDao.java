@@ -21,7 +21,7 @@ public class FornecedorDao implements FornecedorDaoRepository {
 	
 	@Override
 	public void salvar(Fornecedor fornecedor) {
-		session.save(fornecedor);
+		session.merge(fornecedor);
 	}
 
 	@SuppressWarnings("unchecked")

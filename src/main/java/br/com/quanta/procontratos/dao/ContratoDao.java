@@ -22,11 +22,8 @@ public class ContratoDao implements ContratoDaoRepository {
 	@Override
 	public void salvar(Contrato contrato) {
 		
-		if(pegaPorNumero(contrato.getNumero()) == null) {
-			session.save(contrato);
-		} else {
-			session.merge(contrato);
-		}
+		session.merge(contrato);
+		
 	}
 
 	@SuppressWarnings("unchecked")
