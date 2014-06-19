@@ -35,7 +35,7 @@
 			<tr>
 				<td>Fornecedor</td>
 				<td>
-					<select name="selecionado.id" ng-model="fornecedor.id" ng-options="fornecedor.nome for fornecedor in fornecedores track by fornecedor.id" class="form-control" >
+					<select name="selecionado.id" ng-model="fornecedor" ng-options="fornecedor.nome for fornecedor in fornecedores track by fornecedor.id" class="form-control" >
 						<option value="">Selecione um fornecedor</option>
 					</select>
 				</td>

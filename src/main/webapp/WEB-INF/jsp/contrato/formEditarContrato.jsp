@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
 <title>Editar Contrato</title>
+
 </head>
 <body ng-controller="ProcontratoController" ng-init="iniciarFornecedor(${contrato.fornecedor.id})">
 
@@ -18,7 +19,7 @@
 		<table class="table">
 			<tr>
 				<td>Numero</td>
-				<td><input type="text" name="contrato.numero" value="${contrato.numero}" class="form-control" readonly="readonly" ng-required="true"></td>
+				<td><input type="text" name="contrato.numero" value="${contrato.numero}" class="form-control" ng-required="true" <c:if test="${contrato.numero != null}">readonly="readonly"</c:if>></td>
 			</tr>
 			<tr>
 				<td>Data Inicio</td>

@@ -10,10 +10,10 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
+import br.com.quanta.procontratos.dao.ContratoDao;
+import br.com.quanta.procontratos.dao.FornecedorDao;
 import br.com.quanta.procontratos.modelo.Contrato;
 import br.com.quanta.procontratos.modelo.Fornecedor;
-import br.com.quanta.procontratos.repositorio.ContratoDaoRepository;
-import br.com.quanta.procontratos.repositorio.FornecedorDaoRepository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,16 +21,16 @@ import com.google.gson.GsonBuilder;
 @Resource
 public class ContratoController {
 
-	private final ContratoDaoRepository contratoDao;
-	private final FornecedorDaoRepository fornecedorDao;
+	private final ContratoDao contratoDao;
+	private final FornecedorDao fornecedorDao;
 	private Result result;
 	private Validator validator;
 	private Gson gson;
 	
-	public ContratoController(ContratoDaoRepository conDao, FornecedorDaoRepository forDao, Result result,
+	public ContratoController(ContratoDao contratoDao, FornecedorDao fornecedorDao, Result result,
 			Validator validator) {
-		this.contratoDao = conDao;
-		this.fornecedorDao = forDao;
+		this.contratoDao = contratoDao;
+		this.fornecedorDao = fornecedorDao;
 		this.result = result;
 		this.validator = validator;
 		this.gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); // Configura o formato da data
@@ -40,10 +40,6 @@ public class ContratoController {
 	@Path("/")
 	public void index() {
 		result.redirectTo(ContratoController.class).lista();
-	}
-
-	public void formNovoContrato() {
-		
 	}
 	
 	public void formEditarContrato(HttpServletRequest request) {
@@ -69,13 +65,13 @@ public class ContratoController {
 		
 		validator.checking(new Validations() {
 			{
-				that(!(contratoDao.pegaPorNumero(contrato.getNumero()) != null), "erro", "contrato.numero.invalido"); // Verifica se o contrato já existe
+				that(!((contratoDao).pegaPorId(contrato.getNumero()) != null), "erro", "contrato.numero.invalido"); // Verifica se o contrato já existe
 				that(!(contrato.getDataFim().before(contrato.getDataInicio()) || !(contrato.getDataFim().after(contrato.getDataInicio()))), "erro", "contrato.data.invalida"); // Verifica se a data de inicio é maior que a data de fim
 				that(!(request.getParameter("selecionado.id").equals("")), "erro", "contrato.fornecedor.invalido"); // Verfica se o campo fornecedor está vazio
 			}
 		});
 		
-		validator.onErrorUsePageOf(ContratoController.class).formNovoContrato();
+		validator.onErrorUsePageOf(ContratoController.class).formEditarContrato(request);
 		
 		persiste(contrato, request);
 

@@ -8,10 +8,10 @@ import org.hibernate.Session;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.quanta.procontratos.modelo.Fornecedor;
-import br.com.quanta.procontratos.repositorio.FornecedorDaoRepository;
+import br.com.quanta.procontratos.repositorio.Repository;
 
 @Component
-public class FornecedorDao implements FornecedorDaoRepository {
+public class FornecedorDao implements Repository<Fornecedor> {
 
 	private final Session session;
 	
@@ -34,8 +34,8 @@ public class FornecedorDao implements FornecedorDaoRepository {
 	}
 
 	@Override
-	public Fornecedor pegaPorId(Long id) {
-		Fornecedor fornecedor = (Fornecedor) session.get(Fornecedor.class, id);
+	public Fornecedor pegaPorId(Object id) {
+		Fornecedor fornecedor = (Fornecedor) session.get(Fornecedor.class, (Long) id);
 		return fornecedor;
 	}
 

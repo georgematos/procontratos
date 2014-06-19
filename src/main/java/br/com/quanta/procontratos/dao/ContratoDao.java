@@ -8,10 +8,10 @@ import org.hibernate.Session;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.quanta.procontratos.modelo.Contrato;
-import br.com.quanta.procontratos.repositorio.ContratoDaoRepository;
+import br.com.quanta.procontratos.repositorio.Repository;
 
 @Component
-public class ContratoDao implements ContratoDaoRepository {
+public class ContratoDao implements Repository<Contrato> {
 
 	private final Session session;
 	
@@ -35,16 +35,16 @@ public class ContratoDao implements ContratoDaoRepository {
 		return contratos;
 	}
 
-	@Override
-	public Contrato pegaPorNumero(String num) {
-		Contrato contrato = (Contrato) session.get(Contrato.class, num);
-		return contrato;
-	}
 
 	@Override
 	public void deletar(Contrato contrato) {
-		Contrato contratoTransient = pegaPorNumero(contrato.getNumero());
+		Contrato contratoTransient = pegaPorId((contrato).getNumero());
 		session.delete(contratoTransient);
+	}
+	
+	public Contrato pegaPorId(Object numero) {
+		Contrato contrato = (Contrato) session.get(Contrato.class, (String) numero);
+		return contrato;
 	}
 
 }
