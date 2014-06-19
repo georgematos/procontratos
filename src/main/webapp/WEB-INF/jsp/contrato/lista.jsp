@@ -12,6 +12,9 @@
 	
 	<%@ include file="/template/nav.jsp" %>
 	
+	<label>Pesquisar:</label>
+	<input ng-model="criteria" />
+	
 	<p>{{ mensagem }}</p>
 	<table class="table">
 	<tr>
@@ -20,7 +23,7 @@
 		<th>Data Fim</th>
 		<th>Fornecedor</th>
 	</tr>
-		<tr ng-repeat="contrato in contratos">
+		<tr ng-repeat="contrato in contratos |filter:criteria">
 			<td>{{ contrato.numero }}</td>
 			<td>{{ contrato.dataInicio }}</td>
 			<td>{{ contrato.dataFim }}</td>
