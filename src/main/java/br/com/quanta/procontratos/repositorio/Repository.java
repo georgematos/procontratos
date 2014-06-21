@@ -8,5 +8,6 @@ public interface Repository<T> {
 	List<T> pegarTodos();
 	T pegaPorId(Object object); // Pode ser uma String em Contrato ou um Long em Fornecedor
 	void deletar(T object);
+	Object getId(T object);
 	
 }

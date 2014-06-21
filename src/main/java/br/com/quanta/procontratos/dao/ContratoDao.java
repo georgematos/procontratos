@@ -8,43 +8,29 @@ import org.hibernate.Session;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.quanta.procontratos.modelo.Contrato;
-import br.com.quanta.procontratos.repositorio.Repository;
 
 @Component
-public class ContratoDao implements Repository<Contrato> {
+public class ContratoDao extends Dao<Contrato> {
 
-	private final Session session;
-	
-	public ContratoDao(Session session) {
-		this.session = session;
-	}
-	
-	@Override
-	public void salvar(Contrato contrato) {
-		
-		session.merge(contrato);
-		
+	protected ContratoDao(Session session) {
+		super(session);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Contrato> pegarTodos() {
-		ArrayList<Contrato> contratos = new ArrayList<>();
 		Query query = session.createQuery("from Contrato");
-		contratos = (ArrayList<Contrato>) query.list();
-		return contratos;
-	}
-
-
-	@Override
-	public void deletar(Contrato contrato) {
-		Contrato contratoTransient = pegaPorId((contrato).getNumero());
-		session.delete(contratoTransient);
+		return  (ArrayList<Contrato>) query.list();
 	}
 	
+	@Override
 	public Contrato pegaPorId(Object numero) {
-		Contrato contrato = (Contrato) session.get(Contrato.class, (String) numero);
-		return contrato;
+		return (Contrato) session.get(Contrato.class, (String) numero);
+	}
+
+	@Override
+	public Object getId(Contrato contrato) {
+		return contrato.getNumero();
 	}
 
 }

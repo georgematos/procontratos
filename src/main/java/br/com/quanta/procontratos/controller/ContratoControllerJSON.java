@@ -1,8 +1,5 @@
 package br.com.quanta.procontratos.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -32,24 +29,20 @@ public class ContratoControllerJSON {
 		
 	@Path("/contrato/lista/json")
 	public void contratoListaJson() {
-		List<Contrato> contratos = new ArrayList<>();
-		contratos = contratoDao.pegarTodos();
-		String objetoGson = gson.toJson(contratos);
+		String objetoGson = gson.toJson(contratoDao.pegarTodos());
 		result.use(Results.http()).body(objetoGson);
 	}
 
 	@Path("/contrato/remove/{numero}")
 	public void contratoExcluir(final String numero) {
-		Contrato contratoTrs = contratoDao.pegaPorId(numero);
-		contratoDao.deletar(contratoTrs);
+		Contrato contratoTransient = contratoDao.pegaPorId(numero);
+		contratoDao.deletar(contratoTransient);
 		result.nothing();
 	}
 	
 	@Path("/contrato/pegaFornecedores/json")
 	public void contratoPegaFornecedores() {
-		List<Fornecedor> fornecedores = new ArrayList<>(); 
-		fornecedores = fornecedorDao.pegarTodos();
-		String objetoGson = gson.toJson(fornecedores);
+		String objetoGson = gson.toJson(fornecedorDao.pegarTodos());
 		result.use(Results.http()).body(objetoGson);
 	}
 	
