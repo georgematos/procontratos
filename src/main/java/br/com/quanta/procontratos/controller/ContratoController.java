@@ -68,9 +68,9 @@ public class ContratoController {
 		
 		validator.checking(new Validations() {
 			{
-				that(!((contratoDao).pegaPorId(contrato.getNumero()) != null), "erro", "contrato.numero.invalido"); // Verifica se o contrato j· existe
-				that(!(contrato.getDataFim().before(contrato.getDataInicio()) || !(contrato.getDataFim().after(contrato.getDataInicio()))), "erro", "contrato.data.invalida"); // Verifica se a data de inicio È maior que a data de fim
-				that(!(request.getParameter("selecionado.id").equals("")), "erro", "contrato.fornecedor.invalido"); // Verfica se o campo fornecedor est· vazio
+				that(!((contratoDao).pegaPorId(contrato.getNumero()) != null), "erro", "contrato.numero.invalido"); // Verifica se o contrato j√° existe
+				that(!(contrato.getDataFim().before(contrato.getDataInicio()) || !(contrato.getDataFim().after(contrato.getDataInicio()))), "erro", "contrato.data.invalida"); // Verifica se a data de inicio √© maior que a data de fim
+				that(!(request.getParameter("selecionado.id").equals("")), "erro", "contrato.fornecedor.invalido"); // Verfica se o campo fornecedor est√° vazio
 			}
 		});
 		
@@ -84,8 +84,8 @@ public class ContratoController {
 		
 		validator.checking(new Validations() {
 			{
-				that(!(contrato.getDataFim().before(contrato.getDataInicio()) || !(contrato.getDataFim().after(contrato.getDataInicio()))), "erro", "contrato.data.invalida"); // Verifica se a data de inicio È maior que a data de fim
-				that(!(request.getParameter("selecionado.id").equals("?")), "erro", "contrato.fornecedor.invalido"); // Se o campo estiver vazio, o angular envia "?" na requisiÁ„o.
+				that(!(contrato.getDataFim().before(contrato.getDataInicio()) || !(contrato.getDataFim().after(contrato.getDataInicio()))), "erro", "contrato.data.invalida"); // Verifica se a data de inicio √© maior que a data de fim
+				that(!(request.getParameter("selecionado.id").equals("?")), "erro", "contrato.fornecedor.invalido"); // Se o campo estiver vazio, o angular envia "?" na requisi√ß√£o.
 			}
 		});
 				

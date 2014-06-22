@@ -1,22 +1,22 @@
-// lógica do controller
+// lÃ³gica do controller
 var funcao = function($scope, $http, $resource) {
 
-	// Recupera um Array de contratos via requisição ajax ao servidor de aplicação.
+	// Recupera um Array de contratos via requisiÃ§Ã£o ajax ao servidor de aplicaÃ§Ã£o.
     $scope.carregarListaDeContratos = function() {
     	$http.get('/procontratos/lista').success(function(retorno) {
     		$scope.contratos = retorno;
 	    }).error(function(msg) {
-	    	$scope.mensagem = "Não foi possível recuparar a lista, por favor tente mais tarde.";
+	    	$scope.mensagem = "Nao foi possivel recuparar a lista, por favor tente mais tarde.";
 	    	console.log(msg);
 	    });
     };
     
-    // Recupera um Array de fornecedores via requisição ajax ao servidor de aplicação.
+    // Recupera um Array de fornecedores via requisiÃ§Ã£o ajax ao servidor de aplicaÃ§Ã£o.
     $scope.carregarListaDeFornecedores = function() {
     	$http.get('/procontratos/pegaFornecedores').success(function(retorno) {
     		$scope.fornecedores = retorno;
     	}).error(function(msg) {
-    		$scope.mensagem = "Não foi possível recuparar a lista, por favor tente mais tarde.";
+    		$scope.mensagem = "NÃ£o foi possÃ­vel recuparar a lista, por favor tente mais tarde.";
     		console.log(msg);
     	});
     };
@@ -25,7 +25,7 @@ var funcao = function($scope, $http, $resource) {
     	$http.get('/procontratos/pegaFornecedor/'+id).success(function(retorno) {
     		$scope.fornecedor = retorno;
     	}).error(function(msg) {
-    		$scope.mensagem = "Não foi possível recuparar o fornecedor, por favor tente mais tarde.";
+    		$scope.mensagem = "NÃ£o foi possÃ©vel recuparar o fornecedor, por favor tente mais tarde.";
     		console.log(msg);
     	});
     };
@@ -36,7 +36,7 @@ var funcao = function($scope, $http, $resource) {
     		$http.post('/procontratos/remove/'+contrato.numero).success(function(retorno) {
     			$scope.carregarListaDeContratos();
     		}).error(function(msg) {
-    			$scope.mensagem = "Não foi possível excluir o contrato, tente novamente.";
+    			$scope.mensagem = "NÃ£o foi possÃ­vel excluir o contrato, tente novamente.";
     		});    		
     	}    	
     };
@@ -47,5 +47,5 @@ var funcao = function($scope, $http, $resource) {
 };
 
 
-// a variável app é usada pra associar o módulo com um controller
+// a variÃ¡vel app Ã© usada pra associar o mÃ³dulo com um controller
 app.controller('ProcontratoController', funcao);

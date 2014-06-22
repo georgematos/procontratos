@@ -37,7 +37,7 @@
 			<td><button type="button" ng-click="remove(contrato)">Excluir</button></td>
 		<tr>
 	</table>
-	<script type="text/javascript" src="<c:url value="/js/angular.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/js/angular.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/angular-resource.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/main.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/js/ProcontratoController.js" />"></script>
