@@ -27,26 +27,26 @@ public class ContratoControllerJSON {
 		this.result = result;
 	}
 		
-	@Path("/contrato/lista/json")
+	@Path("/lista")
 	public void contratoListaJson() {
 		String objetoGson = gson.toJson(contratoDao.pegarTodos());
 		result.use(Results.http()).body(objetoGson);
 	}
 
-	@Path("/contrato/remove/{numero}")
+	@Path("/remove/{numero}")
 	public void contratoExcluir(final String numero) {
 		Contrato contratoTransient = contratoDao.pegaPorId(numero);
 		contratoDao.deletar(contratoTransient);
 		result.nothing();
 	}
 	
-	@Path("/contrato/pegaFornecedores/json")
+	@Path("/pegaFornecedores")
 	public void contratoPegaFornecedores() {
 		String objetoGson = gson.toJson(fornecedorDao.pegarTodos());
 		result.use(Results.http()).body(objetoGson);
 	}
 	
-	@Path("/contrato/pegaFornecedor/json/{id}")
+	@Path("/pegaFornecedor/{id}")
 	public void contratoPegaFornecedor(Long id) {
 		Fornecedor fornecedor = fornecedorDao.pegaPorId(id);
 		String objetoGson = gson.toJson(fornecedor);

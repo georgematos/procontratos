@@ -1,8 +1,5 @@
 package br.com.quanta.procontratos.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Path;
@@ -39,9 +36,15 @@ public class ContratoController {
 		
 	@Path("/")
 	public void index() {
-		result.redirectTo(ContratoController.class).lista();
+		result.redirectTo(ContratoController.class).contratos();
 	}
 	
+	@Path("/contratos")
+	public void contratos() {
+
+	}
+	
+	@Path("/formEditarContrato")
 	public void formEditarContrato(HttpServletRequest request) {
 		Contrato contrato = gson.fromJson(request.getParameter("contrato"), Contrato.class);
 		result.include("contrato", contrato);
@@ -57,7 +60,7 @@ public class ContratoController {
 		
 		contratoDao.salvar(contrato);
 		
-		result.redirectTo(ContratoController.class).lista();
+		result.redirectTo(ContratoController.class).contratos();
 		
 	}
 
@@ -90,12 +93,6 @@ public class ContratoController {
 				
 		persiste(contrato, request);
 		
-	}
-	
-	public List<Contrato> lista() {
-		List<Contrato> contratos = new ArrayList<>();
-		contratos = contratoDao.pegarTodos();
-		return contratos;
 	}
 	
 }

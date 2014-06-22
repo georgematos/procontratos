@@ -5,14 +5,14 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<c:url value="/contrato/lista" />">Procontratos</a>
+      <a class="navbar-brand" href="<c:url value="/contratos" />">Procontratos</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<c:url value="/contrato/formEditarContrato" />">Novo</a></li>
-        <li><a href="<c:url value="/contrato/lista" />">Listar</a></li>
+        <li><a href="<c:url value="/formEditarContrato" />">Novo</a></li>
+        <li><a href="<c:url value="/contratos" />">Listar</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
